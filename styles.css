@@ -21,7 +21,7 @@
 .col1 {
   width: 100%;
   height: 50vh;
-  background: violet;
+  background: green;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,7 +106,7 @@ h3 {
   .col1 {
     width: 100%;
     height: 50vh;
-    background: violet;
+    background: blue;
   }
   .col2 {
     width: 100%;
@@ -149,7 +149,7 @@ h3 {
   .col1 {
     width: 100%;
     height: 50vh;
-    background: violet;
+    background: red;
   }
   .col2 {
     width: 100%;
@@ -172,7 +172,7 @@ h3 {
   .col1 {
     width: 100%;
     height: 50vh;
-    background: violet;
+    background: yellow;
     display: flex;
     justify-content: center;
     align-items: center;
