@@ -22,7 +22,30 @@
   width: 100%;
   height: 50vh;
   background: violet;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.given-card {
+  width: 100px;
+  height: 150px;
+  padding: 5px;
+  background: #fff;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.given-card .shape {
+  text-align: center;
+}
+
+.given-card .bot-num {
+  transform: rotate(180deg);
+}
+
 .col2 {
   width: 100%;
   height: 50vh;
@@ -51,26 +74,3 @@
     background: rgb(76, 168, 230);
   }
 }
-
-/* @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .container {
-    width: 100%;
-    height: 100vh;
-    background: wheat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .col1 {
-    width: 100%;
-    height: 50vh;
-    background: violet;
-  }
-  .col2 {
-    width: 100%;
-    height: 50vh;
-    background: rgb(76, 168, 230);
-  }
-} */
