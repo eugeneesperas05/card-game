@@ -8,7 +8,7 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.container {
+.main-container {
   width: 100%;
   height: 100vh;
   background: wheat;
@@ -18,19 +18,26 @@
   flex-direction: column;
 }
 
+h3 {
+  color: gold;
+}
+
 .col1 {
   width: 100%;
   height: 50vh;
   background: green;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   font-size: 1.7rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(2, 1fr); */
+  justify-items: center;
+  align-items: center;
 }
 
-h3 {
-  color: gold;
+.score-container {
+  color: #fff;
+  width: 150px;
 }
 
 .given-card {
@@ -69,7 +76,7 @@ h3 {
 }
 
 .result-container {
-  padding: 1rem 0 1.5rem 0;
+  padding-bottom: 3rem;
 }
 
 .choices-card {
@@ -92,7 +99,14 @@ h3 {
   transform: rotate(180deg);
 }
 
-@media screen and (max-width: 1080px) and (min-resolution: 2dppx) {
+.black {
+  color: #000;
+}
+.red {
+  color: red;
+}
+
+/* @media screen and (max-width: 1080px) and (min-resolution: 2dppx) {
   .container {
     width: 100%;
     height: 100vh;
@@ -242,4 +256,4 @@ h3 {
   .choices-card .bot {
     transform: rotate(180deg);
   }
-}
+} */
