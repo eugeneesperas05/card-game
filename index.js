@@ -67,16 +67,21 @@ const cardGame = () => {
       const bot = item.querySelectorAll(".bot");
       const shapeChoice = item.querySelectorAll(".shape-choice");
 
+      item.style.backgroundImage = "url(images/cbg.png)";
+
       top.forEach((t) => {
         t.textContent = geneNumber();
         const numberGene = t.textContent;
+        t.setAttribute("id", "hidden");
 
         bot.forEach((b) => {
           b.textContent = numberGene;
+          b.setAttribute("id", "hidden");
         });
 
         shapeChoice.forEach((s) => {
           s.innerHTML = geneShape();
+          s.setAttribute("id", "hidden");
           if (s.innerHTML == listShape[0] || s.innerHTML == listShape[1]) {
             item.setAttribute("class", "choices-card black");
           } else if (
@@ -166,36 +171,98 @@ function correctGuess() {
   const top1 = document.querySelector(".top-num");
   const loser = document.querySelector(".loser");
   const winner = document.querySelector(".winner");
-
   const cardChoices = document.querySelectorAll(".choices-card");
+
   cardChoices.forEach((cho) => {
     cho.addEventListener("click", () => {
-      const cardGiven = top1.getAttribute("data-value");
-      const top2 = cho.querySelectorAll(".top");
-      top2.forEach((el) => {
-        const choice = el.getAttribute("data-value");
-        if (cardGiven === choice) {
-          result.textContent = "Winner";
-          win++;
-          winner.textContent = `Win: ${win}`;
-        } else {
-          result.textContent = "Loser";
-          los++;
-          loser.textContent = `Los: ${los}`;
-        }
-      });
-      // Call cardGame function to generate new sets of cards
-      cardGame();
+      setTimeout(() => {
+        const cardGiven = top1.getAttribute("data-value");
+        const bot = cho.querySelectorAll(".bot");
+        const shape = cho.querySelectorAll(".shape");
+        const top2 = cho.querySelectorAll(".top");
 
-      if (win === 5) {
-        alert("You are a Winner");
-        win = 0;
-        winner.textContent = `Win: 0`;
-      } else if (los === 5) {
-        alert("You are a Loser");
-        los = 0;
-        loser.textContent = `Los: 0`;
-      }
+        cho.style.backgroundImage = "none";
+
+        top2.forEach((el) => {
+          el.removeAttribute("id");
+          const choice = el.getAttribute("data-value");
+          if (cardGiven === choice) {
+            result.innerHTML = `<i class="bi bi-check-lg"></i>`;
+            result.classList.remove("i-wrong");
+            result.classList.add("i-correct");
+            win++;
+            winner.textContent = `Win: ${win}`;
+          } else {
+            result.innerHTML = `<i class="bi bi-x-lg"></i>`;
+            result.classList.remove("i-correct");
+            result.classList.add("i-wrong");
+            los++;
+            loser.textContent = `Los: ${los}`;
+          }
+        });
+
+        bot.forEach((baba) => {
+          baba.removeAttribute("id");
+        });
+
+        shape.forEach((hugis) => {
+          hugis.removeAttribute("id");
+        });
+
+        const popup = document.querySelector(".popup");
+        const popupH1 = document.querySelector(".win-los");
+        const btn = document.querySelector("button");
+
+        if (win === 5) {
+          popup.style.display = "block";
+          popupH1.textContent = "YOU ARE A WINNER";
+          win = 0;
+          winner.textContent = `Win: 0`;
+          los = 0;
+          loser.textContent = `Los: 0`;
+        } else if (los === 5) {
+          popup.style.display = "block";
+          popupH1.textContent = "YOU ARE A LOSER";
+          win = 0;
+          winner.textContent = `Win: 0`;
+          los = 0;
+          loser.textContent = `Los: 0`;
+        }
+
+        btn.addEventListener("click", () => {
+          cardGame();
+          popup.style.display = "none";
+        });
+      }, 700);
+
+      setTimeout(() => {
+        //para ma control ko ang pag display ng 3 unclicked cards
+        const cardChoices = document.querySelectorAll(".choices-card");
+        const botAll = document.querySelectorAll(".bot");
+        const shapeAll = document.querySelectorAll(".shape");
+        const top2All = document.querySelectorAll(".top");
+        cardChoices.forEach((c) => {
+          c.style.backgroundImage = "none";
+        });
+
+        top2All.forEach((taas) => {
+          taas.removeAttribute("id");
+        });
+
+        botAll.forEach((baba) => {
+          baba.removeAttribute("id");
+        });
+
+        shapeAll.forEach((hugis) => {
+          hugis.removeAttribute("id");
+        });
+      }, 1800);
+
+      setTimeout(() => {
+        result.innerHTML = ``;
+        // Call cardGame function to generate new sets of cards
+        cardGame();
+      }, 3000);
     });
   });
 }
